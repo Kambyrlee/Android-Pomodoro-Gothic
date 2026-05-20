@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Custom palette colors -->
+    <color name="dk_base_1">#14131A</color>
+    <color name="main_purple">#4A3B6B</color>
+    <color name="mid_base_2">#31323e</color>
+    <color name="lt_accent_1">#D4CFC5</color>
+    <color name="lt_accent_2">#8D7FA3</color>
 </resources>
