@@ -1,4 +1,4 @@
-package com.example.pomodorogothic.ui.dashboard;
+package com.example.pomodorogothic.ui.archive;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.pomodorogothic.databinding.FragmentDashboardBinding;
+import com.example.pomodorogothic.databinding.FragmentArchiveBinding;
 
-public class DashboardFragment extends Fragment {
+public class ArchiveFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentArchiveBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        ArchiveViewModel archiveViewModel =
+                new ViewModelProvider(this).get(ArchiveViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentArchiveBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textArchive;
+        archiveViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

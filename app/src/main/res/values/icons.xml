@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="ic_nav_home" type="drawable">@drawable/tombstone</item>
+    <item name="ic_nav_archive" type="drawable">@drawable/scroll</item>
+    <item name="ic_nav_settings" type="drawable">@drawable/key</item>
+
+</resources>

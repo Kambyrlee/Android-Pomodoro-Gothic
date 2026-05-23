@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="icon_attributions">
+        <item>Home Icon: <a href="https://www.flaticon.com/free-icons/cultures" title="cultures icons">Cultures icons created by Freepik - Flaticon</a></item>
+        <item>Archive Icon: <a href="https://www.flaticon.com/free-icons/parchment" title="parchment icons">Parchment icons created by yaicon - Flaticon</a></item>
+        <item>Settings Icon: <a href="https://www.flaticon.com/free-icons/skull" title="skull icons">Skull icons created by Freepik - Flaticon</a></item>
+    </string-array>
+</resources>
