@@ -58,6 +58,8 @@
         app:layout_constraintBottom_toTopOf="@id/nav_view"
         app:layout_constraintTop_toBottomOf="@+id/timerText"
         android:text="@string/button_default"
+        android:fontFamily="@font/body_font"
+        android:textStyle="bold"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
