@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@drawable/smoky_vingette">
 
     <TextView
         android:id="@+id/text_home"
@@ -19,4 +20,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="56dp"
+        android:textAlignment="center"
+        android:text="@string/timer_default"
+        android:textColor="@color/lt_accent_2"
+        android:textSize="72sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/start_stop"
+        android:fontFamily="@font/manufacturingconsent_regular" />
+
+    <Button
+        android:id="@+id/start_stop"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerText"
+        android:text="@string/button_default"
+        android:fontFamily="@font/body_font"
+        android:textStyle="bold"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
