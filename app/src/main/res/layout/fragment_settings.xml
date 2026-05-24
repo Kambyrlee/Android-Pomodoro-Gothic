@@ -6,34 +6,195 @@
     android:layout_height="match_parent"
     tools:context=".ui.settings.SettingsFragment">
 
-    <TextView
-        android:id="@+id/text_settings"
+    <ScrollView
+        android:id="@+id/settings_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/icon_attributions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_settings"
-        android:fontFamily="@font/body_font"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dev_credits"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon_attributions"
-        android:fontFamily="@font/header_font" />
+            <TextView
+                android:id="@+id/text_settings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:text="@string/title_settings"
+                android:fontFamily="@font/header_font"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
+            <TextView
+                android:id="@+id/pomo_settings_section"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="15sp"
+                android:text="@string/pomo_settings_section"
+                android:fontFamily="@font/body_font"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/text_settings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/work_input_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/work_duration_label"
+                android:fontFamily="@font/body_font"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/work_input_container"
+                app:layout_constraintTop_toTopOf="@id/work_input_container"
+                app:layout_constraintBottom_toBottomOf="@id/work_input_container"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/work_input_container"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:hintEnabled="false"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                app:layout_constraintTop_toBottomOf="@id/pomo_settings_section"
+                app:layout_constraintStart_toEndOf="@id/work_input_label"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/work_duration_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingStart="8dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/body_font"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/rest_input_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rest_duration_label"
+                android:fontFamily="@font/body_font"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rest_input_container"
+                app:layout_constraintTop_toTopOf="@id/rest_input_container"
+                app:layout_constraintBottom_toBottomOf="@id/rest_input_container"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rest_input_container"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:hintEnabled="false"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                app:layout_constraintTop_toBottomOf="@id/work_input_container"
+                app:layout_constraintStart_toEndOf="@id/rest_input_label"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rest_duration_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingStart="8dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/body_font"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/wipr_input_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/intervals_per_round_label"
+                android:fontFamily="@font/body_font"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wipr_input_container"
+                app:layout_constraintTop_toTopOf="@id/wipr_input_container"
+                app:layout_constraintBottom_toBottomOf="@id/wipr_input_container"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/wipr_input_container"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:hintEnabled="false"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                app:layout_constraintTop_toBottomOf="@id/rest_input_container"
+                app:layout_constraintStart_toEndOf="@id/wipr_input_label"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/wipr_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingStart="8dp"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/body_font"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/credits_section"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="15sp"
+                android:text="@string/credits_title"
+                android:fontFamily="@font/body_font"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/wipr_input_container"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/icon_attributions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/body_font"
+                app:layout_constraintTop_toBottomOf="@id/credits_section"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/dev_credits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/header_font"
+                android:text="@string/dev_credits"
+                app:layout_constraintTop_toBottomOf="@id/icon_attributions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

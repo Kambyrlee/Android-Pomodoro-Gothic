@@ -34,11 +34,7 @@ public class SettingsFragment extends Fragment {
 
         binding.iconAttributions.setText(builder.toString());
 
-        String credits = getResources().getString(R.string.dev_credits);
-        binding.devCredits.setText(credits);
-
         final TextView textView = binding.textSettings;
-        settingsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
