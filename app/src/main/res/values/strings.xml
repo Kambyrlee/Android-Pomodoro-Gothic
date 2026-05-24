@@ -13,6 +13,7 @@
     <string name="pomo_settings_section">Timer and Interval Settings</string>
     <string name="work_duration_label">Work Interval (minutes):</string>
     <string name="rest_duration_label">Rest Interval (minutes):</string>
+    <string name="long_rest_duration_label">Long Rest Interval (minutes):</string>
     <string name="intervals_per_round_label">WIPR:</string>
 
     <string name="credits_title">Credits and Attribution</string>
