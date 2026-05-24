@@ -28,4 +28,12 @@
         app:layout_constraintTop_toBottomOf="@+id/text_settings"
         android:fontFamily="@font/body_font"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dev_credits"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon_attributions"
+        android:fontFamily="@font/header_font" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

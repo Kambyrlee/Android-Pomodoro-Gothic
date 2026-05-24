@@ -5,4 +5,6 @@
         <item>Archive Icon: <a href="https://www.flaticon.com/free-icons/parchment" title="parchment icons">Parchment icons created by yaicon - Flaticon</a></item>
         <item>Settings Icon: <a href="https://www.flaticon.com/free-icons/skull" title="skull icons">Skull icons created by Freepik - Flaticon</a></item>
     </string-array>
+
+    <string name="dev_credits">Developed by Chthonic Crown Studios™</string>
 </resources>
