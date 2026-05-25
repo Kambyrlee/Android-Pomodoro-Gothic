@@ -37,6 +37,8 @@ public class TimerViewModel extends AndroidViewModel {
     public void startTimer(long duration) {
         if (timer != null) timer.cancel();
 
+        timerIsActive.setValue(true);
+
         timer = new CountDownTimer(duration, 1000) {
             @Override
             public void onFinish() {
@@ -54,7 +56,6 @@ public class TimerViewModel extends AndroidViewModel {
         }.start();
 
     }
-// TODO: Fix... all text updates for button, state, round.
     private void pauseTimer() {
         if (timer != null) timer.cancel();
         timerIsActive.setValue(false);
@@ -74,7 +75,7 @@ public class TimerViewModel extends AndroidViewModel {
         int currentRounds = (roundCount.getValue() != null) ? roundCount.getValue() : 0;
 
         if (current == PomodoroState.WORK) {
-            currentRounds ++;
+            currentRounds++;
             roundCount.setValue(currentRounds);
 
             if (currentRounds % roundsBeforeLong == 0) {
@@ -108,7 +109,8 @@ public class TimerViewModel extends AndroidViewModel {
     }
 
     private void resetTimerToDefault() {
-        updateTimerText(getDurationForCurrentState());
+        currentMillisLeft = getDurationForCurrentState();
+        updateTimerText(currentMillisLeft);
     }
 
     private void updateTimerText(long millis) {
@@ -133,5 +135,11 @@ public class TimerViewModel extends AndroidViewModel {
             currentMillisLeft = getDurationForCurrentState();
             updateTimerText(currentMillisLeft);
         }
+    }
+    public boolean timerIsUnstarted() {
+        boolean isNotRunning = !Boolean.TRUE.equals(timerIsActive.getValue());
+        boolean isAtStart = (currentMillisLeft == getDurationForCurrentState());
+
+        return isNotRunning && isAtStart;
     }
 }

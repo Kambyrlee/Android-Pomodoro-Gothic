@@ -1,5 +1,7 @@
 package com.example.pomodorogothic.ui.home;
 
+import static android.icu.text.ListFormatter.Type.OR;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,18 +49,16 @@ public class HomeFragment extends Fragment {
             } else {
                 binding.startStop.setText(R.string.start_button_text);
             }
+            updateRoundsText();
         });
 
         timerViewModel.getCurrentState().observe(getViewLifecycleOwner(), state -> {
             updateUiForState(state);
+            updateRoundsText();
         });
 
         timerViewModel.getRoundCount().observe(getViewLifecycleOwner(), count -> {
-            if (count == 0) {
-                binding.roundsText.setText("");
-            } else {
-                binding.roundsText.setText(getString(R.string.round_display_format, count));
-            }
+            binding.roundsText.setText(getString(R.string.round_display_format, count + 1));
         });
         binding.startStop.setOnClickListener(v ->  {
             timerViewModel.toggleTimer();
@@ -67,16 +67,34 @@ public class HomeFragment extends Fragment {
 
     private void updateUiForState(TimerViewModel.PomodoroState state) {
         switch (state) {
-            case WORK:
             case SHORT_BREAK:
                 binding.currentStateLabel.setText(R.string.state_short_break);
                 break;
             case LONG_BREAK:
                 binding.currentStateLabel.setText(R.string.state_long_break);
                 break;
+            case WORK:
             default:
                 binding.currentStateLabel.setText(R.string.state_work);
                 break;
+        }
+    }
+    private void updateRoundsText(){
+        Boolean isActive = timerViewModel.getTimerIsActive().getValue();
+        TimerViewModel.PomodoroState state = timerViewModel.getCurrentState().getValue();
+
+        if (Boolean.TRUE.equals(isActive)) {
+            if (state == TimerViewModel.PomodoroState.WORK) {
+                binding.roundsText.setVisibility(View.VISIBLE);
+            } else {
+                binding.roundsText.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            if (timerViewModel.timerIsUnstarted()) {
+                binding.roundsText.setVisibility(View.INVISIBLE);
+            } else {
+                binding.roundsText.setVisibility(View.VISIBLE);
+            }
         }
     }
 
