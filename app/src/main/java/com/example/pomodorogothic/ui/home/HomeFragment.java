@@ -2,14 +2,17 @@ package com.example.pomodorogothic.ui.home;
 
 import static android.icu.text.ListFormatter.Type.OR;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -62,6 +65,38 @@ public class HomeFragment extends Fragment {
         });
         binding.startStop.setOnClickListener(v ->  {
             timerViewModel.toggleTimer();
+        });
+        binding.reset.setOnClickListener(v -> {
+            AlertDialog dialog = new AlertDialog.Builder(requireContext(), R.style.DialogTheme)
+                    .setTitle(R.string.reset_confirm_title)
+                    .setMessage(R.string.reset_confirm_msg)
+                    .setPositiveButton(R.string.reset_confirm_yes, (d, which) -> {
+                        timerViewModel.resetTimer();
+                        updateRoundsText();
+                    })
+                    .setNegativeButton(R.string.reset_confirm_no, null)
+                    .create();
+
+            dialog.show();
+
+            // Forcibly bypass themes because they aren't working as expected.
+
+            TextView messageView = dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.lt_accent_1, null));
+                messageView.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.body_font));
+            }
+            Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+            Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+            if (positiveButton != null) {
+                positiveButton.setTextColor(getResources().getColor(R.color.lt_accent_2, null));
+                positiveButton.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.body_font));
+            }
+            if (negativeButton != null) {
+                negativeButton.setTextColor(getResources().getColor(R.color.lt_accent_2, null));
+                negativeButton.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.body_font));
+            }
         });
     }
 

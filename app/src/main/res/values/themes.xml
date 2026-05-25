@@ -13,4 +13,24 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="DialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+
+        <item name="android:windowBackground">@color/dk_base_1</item>
+
+        <item name="colorAccent">@color/lt_accent_2</item>
+        <item name="android:textColorPrimary">@color/lt_accent_1</item>
+
+        <item name="android:windowTitleStyle">@style/GothicDialogTitle</item>
+        <item name="buttonBarButtonStyle">@style/GothicDialogButton</item>
+    </style>
+
+    <style name="GothicDialogTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/lt_accent_2</item>
+        <item name="android:fontFamily">@font/body_font</item>
+    </style>
+
+    <style name="GothicDialogButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/lt_accent_2</item>
+        <item name="android:fontFamily">@font/body_font</item>
+    </style>
 </resources>
