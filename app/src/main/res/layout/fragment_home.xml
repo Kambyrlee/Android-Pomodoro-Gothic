@@ -20,6 +20,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_state_label"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/timerText"
+        android:layout_marginTop="150dp"/>
+
 
     <TextView
         android:id="@+id/timerText"
@@ -50,5 +58,13 @@
         android:text="@string/button_default"
         android:fontFamily="@font/body_font"
         android:textStyle="bold"
+        android:backgroundTint="@color/lt_accent_2"
         />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rounds_text"
+        app:layout_constraintTop_toBottomOf="@id/start_stop"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.pomodorogothic.R;
 import com.example.pomodorogothic.databinding.FragmentSettingsBinding;
+import com.example.pomodorogothic.ui.TimerViewModel;
 
 public class SettingsFragment extends Fragment {
 
@@ -51,6 +52,14 @@ public class SettingsFragment extends Fragment {
         binding.restDurationInput.setText(String.valueOf(sharedPreferences.getInt("rest_duration", 5)));
         binding.longRestDurationInput.setText(String.valueOf(sharedPreferences.getInt("long_rest_duration", 15)));
         binding.wiprInput.setText(String.valueOf(sharedPreferences.getInt("wipr", 4)));
+
+        TimerViewModel timerViewModel = new ViewModelProvider(requireActivity()).get(TimerViewModel.class);
+
+        binding.saveSettings.setOnClickListener(v -> {
+            saveSettings();
+            timerViewModel.refreshSettings();
+            com.google.android.material.snackbar.Snackbar.make(view, R.string.save_confirmation_msg, com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show();
+        });
     }
 
     @Override

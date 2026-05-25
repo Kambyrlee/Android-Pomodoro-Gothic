@@ -20,17 +20,15 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private TimerViewModel timerViewModel;
 
+    @Nullable
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return binding.getRoot();
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -50,9 +48,36 @@ public class HomeFragment extends Fragment {
                 binding.startStop.setText(R.string.start_button_text);
             }
         });
+
+        timerViewModel.getCurrentState().observe(getViewLifecycleOwner(), state -> {
+            updateUiForState(state);
+        });
+
+        timerViewModel.getRoundCount().observe(getViewLifecycleOwner(), count -> {
+            if (count == 0) {
+                binding.roundsText.setText("");
+            } else {
+                binding.roundsText.setText(getString(R.string.round_display_format, count));
+            }
+        });
         binding.startStop.setOnClickListener(v ->  {
             timerViewModel.toggleTimer();
         });
+    }
+
+    private void updateUiForState(TimerViewModel.PomodoroState state) {
+        switch (state) {
+            case WORK:
+            case SHORT_BREAK:
+                binding.currentStateLabel.setText(R.string.state_short_break);
+                break;
+            case LONG_BREAK:
+                binding.currentStateLabel.setText(R.string.state_long_break);
+                break;
+            default:
+                binding.currentStateLabel.setText(R.string.state_work);
+                break;
+        }
     }
 
     @Override
