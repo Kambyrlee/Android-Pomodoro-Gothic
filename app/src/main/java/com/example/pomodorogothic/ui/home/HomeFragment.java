@@ -3,6 +3,8 @@ package com.example.pomodorogothic.ui.home;
 import static android.icu.text.ListFormatter.Type.OR;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +21,21 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.pomodorogothic.R;
 import com.example.pomodorogothic.databinding.FragmentHomeBinding;
 import com.example.pomodorogothic.ui.TimerViewModel;
+import com.example.pomodorogothic.ui.database.Repository;
+import com.example.pomodorogothic.ui.database.Session;
+import com.example.pomodorogothic.ui.database.SessionDAO;
+
+import java.time.LocalDateTime;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private TimerViewModel timerViewModel;
+    private SharedPreferences sharedPreferences;
+
+    private Repository repository;
 
     @Nullable
     @Override
@@ -39,6 +51,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        sharedPreferences = requireActivity().getSharedPreferences("appPrefs", Context.MODE_PRIVATE);
+
+        repository = new Repository(requireActivity().getApplication());
 
         timerViewModel = new ViewModelProvider(requireActivity()).get(TimerViewModel.class);
 
@@ -64,6 +79,27 @@ public class HomeFragment extends Fragment {
             binding.roundsText.setText(getString(R.string.round_display_format, count + 1));
         });
         binding.startStop.setOnClickListener(v ->  {
+            if (timerViewModel.timerIsUnstarted()) {
+                AlertDialog dialog = new AlertDialog.Builder(requireContext(), R.style.DialogTheme)
+                        .setTitle(R.string.session_prompt_title)
+                        .setMessage(R.string.session_prompt_msg)
+                        .setPositiveButton(R.string.session_prompt_yes, (d, which) -> {
+                            LocalDateTime timestamp = LocalDateTime.now();
+                            int roundsCompleted = 0;
+                            int workDuration = sharedPreferences.getInt("work_duration", 25);
+                            int shortRestDuration = sharedPreferences.getInt("rest_duration", 5);
+                            int longRestDuration = sharedPreferences.getInt("long_rest_duration", 15);
+                            String sessionNotes = "";
+
+                            Session session = new Session(timestamp, roundsCompleted, workDuration, shortRestDuration,longRestDuration, sessionNotes);
+                            repository.insertSession(session, id -> {
+
+                            });
+                        })
+                        .setNegativeButton(R.string.session_prompt_no, null)
+                        .create();
+                        dialog.show();
+            }
             timerViewModel.toggleTimer();
         });
         binding.reset.setOnClickListener(v -> {

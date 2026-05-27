@@ -30,4 +30,8 @@
     <string name="reset_confirm_msg">Are you sure you want to reset the timer? This will return you to Round 1.</string>
     <string name="reset_confirm_yes">Yes, Reset</string>
     <string name="reset_confirm_no">No, Cancel</string>
+    <string name="session_prompt_title">Start a Session?</string>
+    <string name="session_prompt_msg">Would you like to start a Session? This will track your rounds and create a note in the archive tab. You can still use the timer without starting a Session.</string>
+    <string name="session_prompt_yes">Yes</string>
+    <string name="session_prompt_no">No</string>
 </resources>

@@ -3,18 +3,20 @@ package com.example.pomodorogothic.ui.database;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.time.LocalDateTime;
+
 @Entity(tableName = "archives")
-public abstract class Session {
+public class Session {
     @PrimaryKey(autoGenerate = true)
     private int sessionID;
-    private long timestamp;
+    private LocalDateTime timestamp;
     private int roundsCompleted;
     private int workDuration;
     private int shortRestDuration;
     private int longRestDuration;
     public String sessionNotes;
 
-    public Session(long timestamp, int roundsCompleted, int workDuration, int shortRestDuration, int longRestDuration, String sessionNotes) {
+    public Session(LocalDateTime timestamp, int roundsCompleted, int workDuration, int shortRestDuration, int longRestDuration, String sessionNotes) {
         this.timestamp = timestamp;
         this.roundsCompleted = roundsCompleted;
         this.workDuration = workDuration;
@@ -25,8 +27,8 @@ public abstract class Session {
 
     public int getSessionID() { return sessionID; }
     public void setSessionID(int sessionID) { this.sessionID = sessionID; }
-    public long getTimestamp() { return timestamp; }
-    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
+    public LocalDateTime getTimestamp() { return timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
     public int getRoundsCompleted() { return roundsCompleted; }
     public void setRoundsCompleted(int roundsCompleted) { this.roundsCompleted = roundsCompleted; }
     public int getWorkDuration() { return workDuration; }
